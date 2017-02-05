@@ -1,1 +1,1 @@
-web: go-mmo -port $PORT
+web: go-mmo
