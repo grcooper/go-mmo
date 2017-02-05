@@ -1,0 +1,1 @@
+web: go-mmo -port=$3000
