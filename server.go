@@ -3,6 +3,7 @@ package main
 import (
 	"log"
 	"net/http"
+	"os"
 
 	"github.com/gorilla/mux"
 	"github.com/gorilla/websocket"
@@ -106,9 +107,15 @@ func remoteHandler(res http.ResponseWriter, req *http.Request) {
 
 func main() {
 	log.Println("In main")
+
+	port := os.Getenv("PORT")
+	if port == "" {
+		log.Fatal("$PORT must be set")
+	}
+
 	r := mux.NewRouter()
 	r.HandleFunc("/ws", remoteHandler)
 
 	r.PathPrefix("/").Handler(http.FileServer(http.Dir("./public/")))
-	http.ListenAndServe(":3000", r)
+	http.ListenAndServe(port, r)
 }
