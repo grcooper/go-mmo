@@ -1,0 +1,29 @@
+{
+	"comment": "",
+	"ignore": "test",
+	"package": [
+		{
+			"checksumSHA1": "pLA4j6v1jGIQExmYHf40KjSfkM4=",
+			"path": "github.com/gorilla/mux",
+			"revision": "392c28fe23e1c45ddba891b0320b3b5df220beea",
+			"revisionTime": "2017-01-18T13:43:44Z"
+		},
+		{
+			"checksumSHA1": "WdNU8HuPSjFlw2hsSIgZ78AZIIA=",
+			"path": "github.com/gorilla/websocket",
+			"revision": "c36f2fe5c330f0ac404b616b96c438b8616b1aaf",
+			"revisionTime": "2017-01-26T19:14:27Z"
+		},
+		{
+			"checksumSHA1": "eVoyhpCbyPg6D3P63EStHNO6iIQ=",
+			"path": "github.com/pborman/uuid",
+			"revision": "1b00554d822231195d1babd97ff4a781231955c9",
+			"revisionTime": "2017-01-12T15:04:04Z"
+		}
+	],
+	"heroku": {
+		"install" : [ "./..." ],
+		"goVersion" : "go1.7.5" 
+	},
+	"rootPath": "github.com/go-mmo"
+}
