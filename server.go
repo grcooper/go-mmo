@@ -113,9 +113,12 @@ func main() {
 		log.Fatal("$PORT must be set")
 	}
 
+	log.Printf("Got Port: %s\n", port)
 	r := mux.NewRouter()
 	r.HandleFunc("/ws", remoteHandler)
 
 	r.PathPrefix("/").Handler(http.FileServer(http.Dir("./public/")))
+	log.Println("Listen and Serve")
 	http.ListenAndServe(port, r)
+	log.Println("End of Main")
 }
