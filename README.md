@@ -4,6 +4,11 @@ I just wanted to work on an MMO and see if I could get the networking up and run
 
 The base for this code was taken from: [Shoen](https://github.com/Shoen/phaser_multiplayer_demo)
 
+# TODO:
+
+* Use glide instead of govendor
+* Fix Websocket closing errors (have a longer timeout or a heartbeat?)
+
 # Goals
 
 * Base network code for players to connect to the same server
