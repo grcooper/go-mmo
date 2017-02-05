@@ -119,6 +119,6 @@ func main() {
 
 	r.PathPrefix("/").Handler(http.FileServer(http.Dir("./public/")))
 	log.Println("Listen and Serve")
-	http.ListenAndServe(port, r)
+	http.ListenAndServe(":"+port, r)
 	log.Println("End of Main")
 }
