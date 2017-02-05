@@ -1,1 +1,1 @@
-web: go-mmo -port=$3000
+web: go-mmo -port $PORT
