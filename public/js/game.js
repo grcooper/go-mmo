@@ -36,7 +36,7 @@ window.onload = function() {
 
         //create a new ws connection and send our position to others
         //sock = new WebSocket("ws://localhost:3000/ws");
-        sock = new WebSocket("ws://go-mmo.herokuapp.com/ws");
+        sock = new WebSocket("wss://go-mmo.herokuapp.com/ws");
         sock.onopen = function() {
             var pos = JSON.stringify({
                 x: player.x,
