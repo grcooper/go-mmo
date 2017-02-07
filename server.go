@@ -110,7 +110,8 @@ func main() {
 
 	port := os.Getenv("PORT")
 	if port == "" {
-		log.Fatal("$PORT must be set")
+		port = "3000"
+		log.Println("Using Default PORT")
 	}
 
 	log.Printf("Got Port: %s\n", port)

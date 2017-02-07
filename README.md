@@ -6,7 +6,9 @@ The base for this code was taken from: [Shoen](https://github.com/Shoen/phaser_m
 
 # TODO:
 
-* Fix Websocket closing errors (have a longer timeout or a heartbeat?)
+* Better organize different kinds of messages
+* Add a chat
+* Add more things that the players can do
 
 # Goals
 
