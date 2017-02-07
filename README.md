@@ -6,7 +6,6 @@ The base for this code was taken from: [Shoen](https://github.com/Shoen/phaser_m
 
 # TODO:
 
-* Use glide instead of govendor
 * Fix Websocket closing errors (have a longer timeout or a heartbeat?)
 
 # Goals
