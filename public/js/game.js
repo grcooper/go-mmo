@@ -48,7 +48,12 @@ window.onload = function() {
         // when we receive a message we spawn, destroy or update a player's
         // position depending on the message's content
         sock.onmessage = function(message) {
-            console.log(message);
+            if(message.data === "") {
+                sock.close()
+                sock = null;
+                console.log("Websocket closed")
+                return
+            }
             var m = JSON.parse(message.data);
             if (m.New) {
                 players[m.Id] = spawn(m);
@@ -59,7 +64,7 @@ window.onload = function() {
                 uPosition(m);
             }
         };
-        game.time.events.loop(Phaser.Timer.SECOND * 5, websocketHeartbeat, this);
+        game.time.events.loop(Phaser.Timer.SECOND * 2, websocketHeartbeat, this);
     }
        
 
