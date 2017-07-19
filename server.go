@@ -33,8 +33,6 @@ func (p *Player) position(new bool) Message {
 var Players = make([]*Player, 0)
 
 func remoteHandler(res http.ResponseWriter, req *http.Request) {
-	var err error
-
 	log.Println("Hit Handler")
 
 	// when someone requires a ws connection we create a new player
@@ -60,10 +58,10 @@ func remoteHandler(res http.ResponseWriter, req *http.Request) {
 	go func() {
 		for _, p := range Players {
 			if p.Socket.RemoteAddr() != player.Socket.RemoteAddr() {
-				if err = player.Socket.WriteJSON(p.position(true)); err != nil {
+				if err := player.Socket.WriteJSON(p.position(true)); err != nil {
 					log.Println(err)
 				}
-				if err = p.Socket.WriteJSON(player.position(true)); err != nil {
+				if err := p.Socket.WriteJSON(player.position(true)); err != nil {
 					log.Println(err)
 				}
 			}
@@ -76,14 +74,14 @@ func remoteHandler(res http.ResponseWriter, req *http.Request) {
 		// Handling network errors
 		// Other players need to know if the sprite dissapears
 		// Remove from the Slice
-		if err = player.Socket.ReadJSON(&player); err != nil {
+		if err := player.Socket.ReadJSON(&player); err != nil {
 			log.Println("Player Disconnected waiting", err)
 			for i, p := range Players {
 				if p.Socket.RemoteAddr() == player.Socket.RemoteAddr() {
 					Players = append(Players[:i], Players[i+1:]...)
 				} else {
 					log.Println("Destroy player", player)
-					if err = p.Socket.WriteJSON(Message{Online: false, Id: player.Id}); err != nil {
+					if err := p.Socket.WriteJSON(Message{Online: false, Id: player.Id}); err != nil {
 						log.Println(err)
 					}
 				}
@@ -96,7 +94,7 @@ func remoteHandler(res http.ResponseWriter, req *http.Request) {
 		go func() {
 			for _, p := range Players {
 				if p.Socket.RemoteAddr() != player.Socket.RemoteAddr() {
-					if err = p.Socket.WriteJSON(player.position(false)); err != nil {
+					if err := p.Socket.WriteJSON(player.position(false)); err != nil {
 						log.Println(err)
 					}
 				}
@@ -108,17 +106,17 @@ func remoteHandler(res http.ResponseWriter, req *http.Request) {
 func main() {
 	log.Println("In main")
 
-	port := os.Getenv("PORT")
-	if port == "" {
+	port, ok := os.LookupEnv("PORT")
+	if !ok {
 		port = "3000"
 		log.Println("Using Default PORT")
 	}
-
 	log.Printf("Got Port: %s\n", port)
+
 	r := mux.NewRouter()
 	r.HandleFunc("/ws", remoteHandler)
-
 	r.PathPrefix("/").Handler(http.FileServer(http.Dir("./public/")))
+
 	log.Println("Listen and Serve")
 	http.ListenAndServe(":"+port, r)
 	log.Println("End of Main")

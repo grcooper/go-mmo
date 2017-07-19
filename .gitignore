@@ -4,3 +4,4 @@ go-mmo
 go-mmo.exe
 .vscode/*
 .vscode
+vendor

@@ -14,7 +14,6 @@ window.onload = function() {
             font: "12px Arial",
             fill: "#ffffff"
         }, //styling players labels a bit
-        ip = "192.168.1.13"; //ip of our Go server
 
     function preload() {
         game.load.spritesheet('char', 'images/char01.png', 32, 48);
